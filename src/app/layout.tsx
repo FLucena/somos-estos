@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Link from 'next/link'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -15,8 +16,31 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+      <html lang="en">
+        <body className={inter.className}>
+          <header className='flex items-center justify-between mx-4'>
+            <Link href='/' className='text-xl font-bold leading-[4rem]'>FL Automations</Link>
+            <nav>
+              <ul className='flex gap-4 opacity-70'>
+                <li>
+                  <Link href="/">Partidos</Link>
+                </li>
+                <li>
+                  <Link href="/jugadores">Jugadores</Link>
+                </li>
+                <li>
+                  <Link href="/armador">Armador de equipos</Link>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          <main className='py-8'>
+            {children}
+          </main>
+          <footer className='text-center leading-[4rem] opacity-70'>
+            {new Date().getFullYear()} FL Automations
+          </footer>
+        </body>
+      </html>
   )
 }
